@@ -1170,17 +1170,33 @@
           "categories": { "type": "array", "items": { "$ref": "#/components/schemas/Category" } }
         }
       },
+      "RestaurantAdminShort": {
+        "type": "object",
+        "description": "Компактные данные администратора ресторана для списка админки.",
+        "properties": {
+          "id": { "type": "integer", "example": 42 },
+          "first_name": { "type": "string", "example": "Алексей" },
+          "last_name": { "type": "string", "example": "Петров" },
+          "phone": { "type": "string", "example": "+79001234567" },
+          "email": { "type": "string", "format": "email", "example": "alex@example.com" }
+        }
+      },
       "RestaurantAdmin": {
         "type": "object",
         "properties": {
           "id": { "type": "integer", "example": 1 },
           "name": { "type": "string", "example": "Суши Мастер" },
-          "restaurant_admin_id": { "type": "integer", "example": 42 },
-          "is_active": { "type": "boolean", "example": true },
+          "description": { "type": "string", "nullable": true, "example": "Лучшие суши в городе" },
+          "photo_url": { "type": "string", "nullable": true, "example": "https://minio.example.com/mavin-images/sushi.jpg" },
+          "pickup_address": { "type": "string", "example": "пр. Мира, 15" },
+          "average_rating": { "type": "number", "format": "float", "example": 4.8, "minimum": 0, "maximum": 5 },
           "review_count": { "type": "integer", "example": 0 },
           "preparation_time_min": { "type": "integer", "nullable": true, "example": 25 },
           "preparation_time_max": { "type": "integer", "nullable": true, "example": 35 },
-          "categories": { "type": "array", "items": { "$ref": "#/components/schemas/Category" } }
+          "categories": { "type": "array", "items": { "$ref": "#/components/schemas/Category" } },
+          "is_active": { "type": "boolean", "example": true },
+          "restaurant_admin_id": { "type": "integer", "nullable": true, "example": 42 },
+          "restaurant_admin": { "$ref": "#/components/schemas/RestaurantAdminShort", "nullable": true }
         }
       },
       "MenuCategory": {
